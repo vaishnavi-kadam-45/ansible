@@ -1,0 +1,6 @@
+---
+- hosts: all
+  tasks:
+    - name: print ansible_hosts and ansible_facts
+      debug:
+        msg: "{{ hostvars['web2']['ansible_facts']['all_ipv4_addresses'] }}"

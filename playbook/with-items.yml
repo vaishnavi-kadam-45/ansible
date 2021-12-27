@@ -1,0 +1,9 @@
+---
+- hosts: web1
+  tasks:
+    - name: Install tree and httpd
+      yum: name{{ item }} state=present
+      with_items:
+        - tree
+        - httpd
+      become: true

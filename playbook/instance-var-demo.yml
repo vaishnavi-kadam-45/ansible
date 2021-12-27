@@ -1,0 +1,17 @@
+---
+- hosts: all
+  tasks:
+    - name: print variables
+      debug:
+        msg: "{{ hostvars['web3'].test5 }}"
+
+    - name: print variables
+      debug:
+       msg: "{{ ansible_facts }}"
+
+    - name: print hosts file
+      shell: cat/etc/hosts
+      register: result
+
+    - debug:
+        var: result 

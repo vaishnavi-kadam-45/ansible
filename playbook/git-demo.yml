@@ -1,0 +1,10 @@
+---
+- hosts: web1
+  tasks:
+    - name: Get files from git repo
+      git:
+        repo: https://github.com/vaishnavi-kadam-45/test-demo.git
+        dest: /var/www/html
+        update: yes
+        force: yes  
+      become: true 

@@ -1,0 +1,10 @@
+---
+- hosts: all
+  tasks:
+    - name: print hosts file
+      shell: cat /etc/hosts
+      register: result
+
+    - debug:
+        var: result 
+

@@ -1,0 +1,19 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Install Apache
+      yum: name=httpd state=present
+      when: ansible_os_family == "RedHat"
+
+    - name: Install apache
+      apt: name=apache2 state=present
+      when: ansible_os_family == "Debian" 
+  
+    - name: start service[httpd]
+      service: name=httpd state=started
+      when: ansible_os_family == "RedHat"
+
+    - name: start service[apache2]
+      service: name=apache2 state=started
+      when: ansible_os_family == "Debian"

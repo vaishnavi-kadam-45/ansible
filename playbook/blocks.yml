@@ -1,0 +1,30 @@
+---
+- hosts: all
+  tasks:
+    - block:
+        - name: Install Apache
+          apt: name=apache2 state=present
+
+        - name: start apache
+          service: name=apache2 state=started
+
+      become: true
+      when: ansible_os_family == "Debian"
+      rescue:
+        - debug:
+           msg: "From rescue block"
+      always:
+        - debug:
+           msg: "from always block"
+
+    - block:
+        - name: install Httpd
+          yum: name=httpd state=present
+
+        - name: start httpd
+          service: name=httpd state=started
+
+      become: true
+      when: ansible_os_family == "RedHat"
+
+

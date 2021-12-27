@@ -1,0 +1,17 @@
+---
+- hosts: all
+  vars:
+    test4: 4.4.4.4 
+  tasks:
+    - name: Print local variables 
+      debug:
+        msg: "{{ hostvars['web1'].test1 }}"
+
+    - name: print play variables
+      debug:
+        msg: "{{ test4 }}"
+
+    - name: print group variables
+      debug:
+        msg: "{{ test3 }}"
+        

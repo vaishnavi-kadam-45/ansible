@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks: 
+    - name: copy files
+      copy:
+        src: files/index.html
+        dest: /var/www/html
+      become: true

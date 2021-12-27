@@ -1,0 +1,16 @@
+---
+- hosts: web1
+  tasks:
+    - name: change Apache port number
+      lineinfile:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: '^Listen '
+        insertafter: '^Listen '
+        line: Listen 80
+      become: true
+
+    - name: Restart apache
+      service:
+        name: httpd
+        state: restarted
+      become: true
