@@ -20,9 +20,18 @@
     - block:
         - name: install Httpd
           yum: name=httpd state=present
+          ignore_errors: yes
 
         - name: start httpd
           service: name=httpd state=started
+ 
+        - name: Print logs
+          shell: cat/var/log/server.log
+          register: command_output
+          failed_when: "'ERROR' in command_output.stderr" 
+        - debug:
+               msg: "{{command_output}}"
+
 
       become: true
       when: ansible_os_family == "RedHat"
